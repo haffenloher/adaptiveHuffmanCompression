@@ -1,7 +1,7 @@
-/*
+﻿/*
  * Main.java
  *
- * Created on 27. M�rz 2011
+ * Created on 27. März 2011
  *
  */
 

@@ -1,7 +1,7 @@
-/*
+﻿/*
  * BitTools.java
  *
- * Created on 27. M�rz 2011, 18:42
+ * Created on 27. März 2011, 18:42
  *
  * This class provides methods to encode and decode characters in UTF-8 on bit
  * level using a stack to store the bits.
