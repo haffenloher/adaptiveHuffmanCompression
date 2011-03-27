@@ -1,46 +1,44 @@
-﻿/*
- * BitTools.java
- *
- * Created on 27. März 2011, 18:42
- *
- * This class provides methods to encode and decode characters in UTF-8 on bit
- * level using a stack to store the bits.
- * The bits are pushed on the stack backwards so that Stack.pop() returns them
- * in the right order.
- */
-
 package main;
 
 import java.util.Stack;
 
 /**
- * @author Raphael Brandis
- * These methods are based on the bits2Ints() and toBinary() methods from
+ * <PRE> This class provides methods to encode and decode characters in UTF-8 on bit level
+ * using a stack to store the bits. The bits are pushed on the stack backwards so that
+ * Stack.pop() returns them in the right order.
+ * It is based on the bits2Ints() and toBinary() methods from
  * http://www.java2s.com/Code/Java/Collections-Data-Structure/Convertbitsettointarrayandstring.htm
- *
-static int[] bits2Ints(BitSet bs) {
-    int[] temp = new int[bs.size() / 32];
-    
-    for (int i = 0; i < temp.length; i++)
-        for (int j = 0; j < 32; j++)
-            if (bs.get(i * 32 + j))
-                temp[i] |= 1 << j;
-    
-    return temp;
-}
-
-static String toBinary(int num) {
-    StringBuffer sb = new StringBuffer();
-    
-    for (int i = 0; i < 32; i++) {
-        sb.append(((num & 1) == 1) ? '1' : '0');
-        num >>= 1;
-    }
-    
-    return sb.reverse().toString();
-}
+ * 
+ * static int[] bits2Ints(BitSet bs) {
+ *    int[] temp = new int[bs.size() / 32];
+ *    
+ *    for (int i = 0; i < temp.length; i++)
+ *        for (int j = 0; j < 32; j++)
+ *            if (bs.get(i * 32 + j))
+ *                temp[i] |= 1 << j;
+ *    
+ *    return temp;
+ * }
+ * 
+ * static String toBinary(int num) {
+ *    StringBuffer sb = new StringBuffer();
+ *    
+ *    for (int i = 0; i < 32; i++) {
+ *        sb.append(((num & 1) == 1) ? '1' : '0');
+ *        num >>= 1;
+ *    }
+ *    
+ *    return sb.reverse().toString();
+ * }
+ * </PRE>
+ * @author Raphael Brandis
  */
 public class BitTools {
+    /**
+     * Takes a character and computes its UTF-8 bitcode
+     * @param num the character that should be encoded (casted to int)
+     * @param reversedBits a stack the bits should be pushed on (the last bits will be on top)
+     */
     public static void encodeUTF8Character(int num, Stack<Boolean> reversedBits) {
         int i, size = 1;
         
@@ -78,6 +76,11 @@ public class BitTools {
         }
     }
     
+    /**
+     * Takes in the UTF-8 bitcode for a single character and computes its integer representation
+     * @param bits a stack of the character's bits with the last bits on top
+     * @return the decoded character as an integer
+     */
     public static int decodeUTF8Character(Stack<Boolean> bits) {
         int i, j, size, temp = 0;
         

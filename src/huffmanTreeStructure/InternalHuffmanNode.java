@@ -3,6 +3,9 @@ package huffmanTreeStructure;
 import java.io.PrintStream;
 
 /**
+ * This class implements the internal nodes used in a Huffman tree. They have two
+ * {@link HuffmanNode}s as children and their weight equals the weight of both
+ * children added up.
  * @author Raphael Brandis
  */
 public class InternalHuffmanNode extends HuffmanNode {
@@ -17,14 +20,28 @@ public class InternalHuffmanNode extends HuffmanNode {
     }
     */
     
+    /**
+     * Sets the node's left child.
+     * @param node the node that should become the new left child
+     */
     public void setLeftChild(HuffmanNode node) {
         this.leftChild = node;
     }
     
+    /**
+     * Sets the node's right child.
+     * @param node the node that should become the new right child
+     */
     public void setRightChild(HuffmanNode node) {
         this.rightChild = node;
     }
     
+    /**
+     * Prints a String representation of this tree, i.e. of the node itself and of its
+     * children.
+     * @param out a PrintStream the String representation should be printed to
+     * @param margin a String containing the indentation spaces
+     */
     public void printKeysTreeOrder(PrintStream out, String margin) {
         String subMargin = "";
         if (margin.length() > 0) {
@@ -35,6 +52,10 @@ public class InternalHuffmanNode extends HuffmanNode {
         this.leftChild.printKeysTreeOrder(out, subMargin + "  \\");
     }
     
+    /**
+     * Gives back a String representation of the node itself (without its children)
+     * @return number and weight of the node as a String
+     */
     public String toString() {
         return number + ":" + weight;
     }
