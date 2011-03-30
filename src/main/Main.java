@@ -1,10 +1,3 @@
-/*
- * Main.java
- *
- * Created on 27. März 2011
- *
- */
-
 package main;
 
 import java.io.IOException;
@@ -12,10 +5,22 @@ import java.io.File;
 import java.util.BitSet;
 
 /**
+ * This project implements the compression and decompression of UTF-8-encoded files
+ * through adaptive Huffman coding using the FGK-algorithm defined by Faller,
+ * Gallager and Knuth to maintain the coding tree.
  * @author Raphael Brandis
- *
+ * @author Patrick de Lanauze
  */
 public class Main {
+    /**
+     * You may compress and decompress files using the following command:
+     * java -jar adaptiveHuffmanCoding.jar [compress|decompress] [inputFilename] [outputFilename]
+     * @param args The first argument has to be either "compress" or "decompress", the second is
+     * the file that should be read and the third is the file the en- or decoding
+     * result should be written to.
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
+     */
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         if (args.length < 3) {
             printUsage();
@@ -23,11 +28,15 @@ public class Main {
             long start = System.currentTimeMillis();
             
             if (args[0].equals("compress")) {
-                Encoder encoder = new Encoder();
-                encoder.compressFile(args[1], args[2]);
+                for (int i = 0; i < 10; i++) {
+                    Encoder encoder = new Encoder();
+                    encoder.compressFile(args[1], args[2]);
+                }
             } else if (args[0].equals("decompress")) {
-                Decoder decoder = new Decoder();
-                decoder.decompressFile(args[1], args[2]);
+                for (int i = 0; i < 10; i++) {
+                    Decoder decoder = new Decoder();
+                    decoder.decompressFile(args[1], args[2]);
+                }
             } else {
                 System.err.println("Unrecognized option: " + args[0]);
                 printUsage();
@@ -42,15 +51,6 @@ public class Main {
             System.out.println("Process took " + (end - start) + "ms to complete.");
             System.out.println("Compression ratio: " + ((double) outBytes / (double) inBytes));
         }
-        /*
-         Encoder myEncoder = new Encoder();
-        myEncoder.compressFile("C:\\Dokumente und Einstellungen\\rapsoel\\Eigene Dateien\\einhard\\informatik\\adaptiveHuffmanCoding\\dist\\in10m.txt",
-                "C:\\Dokumente und Einstellungen\\rapsoel\\Eigene Dateien\\einhard\\informatik\\adaptiveHuffmanCoding\\dist\\out10m.bin");
-         
-        Decoder myDecoder = new Decoder();
-        myDecoder.decompressFile("C:\\Dokumente und Einstellungen\\rapsoel\\Eigene Dateien\\einhard\\informatik\\adaptiveHuffmanCoding\\dist\\out10m.bin",
-                "C:\\Dokumente und Einstellungen\\rapsoel\\Eigene Dateien\\einhard\\informatik\\adaptiveHuffmanCoding\\dist\\out10m.txt");
-         */
     }
     
     private static void printUsage() {

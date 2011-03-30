@@ -65,7 +65,7 @@ public class BitTools {
         
         // write the starting byte
         // one-byte characters start with 0, two-byte characters with 110,
-        // three-byte characters with 1110 and four-byte characters 1110
+        // three-byte characters with 1110 and four-byte characters with 11110
         for (i = 0; i < (size == 1 ? 7 : 7 - size); i++) {
             reversedBits.push(((num & 1) == 1) ? true : false);
             num >>= 1;

@@ -22,18 +22,18 @@ public class InternalHuffmanNode extends HuffmanNode {
     
     /**
      * Sets the node's left child.
-     * @param node the node that should become the new left child
+     * @param newChild the node that should become the new left child
      */
-    public void setLeftChild(HuffmanNode node) {
-        this.leftChild = node;
+    public void setLeftChild(HuffmanNode newChild) {
+        this.leftChild = newChild;
     }
     
     /**
      * Sets the node's right child.
-     * @param node the node that should become the new right child
+     * @param newChild the node that should become the new right child
      */
-    public void setRightChild(HuffmanNode node) {
-        this.rightChild = node;
+    public void setRightChild(HuffmanNode newChild) {
+        this.rightChild = newChild;
     }
     
     /**

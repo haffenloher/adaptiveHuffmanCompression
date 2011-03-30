@@ -14,9 +14,18 @@ import java.util.BitSet;
 import java.util.Stack;
 
 /**
+ * This class decompresses files previosly compressed by the {@link Encoder}.
  * @author Raphael Brandis
  */
 public class Decoder {
+    /**
+     * Takes in two filenames / -paths, reads the first file, decompresses it and
+     * writes the result to the second file.
+     * @param inputFilename path to a file that was previously created using the {@link Encoder} class
+     * @param outputFilename the path the decompressed file should be written to
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
+     */
     public void decompressFile(String inputFilename, String outputFilename) throws IOException, ClassNotFoundException {
         // read the file and deserialize the CompressedFile object
         ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(inputFilename));

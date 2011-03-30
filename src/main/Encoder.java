@@ -13,10 +13,18 @@ import java.util.BitSet;
 import java.util.Stack;
 
 /**
+ * This class compresses files that can be decompressed using the {@link Decoder}.
  * @author Raphael Brandis
  * @author Patrick de Lanauze
  */
 public class Encoder {
+    /**
+     * Takes in two filenames / -paths, reads the first file, compresses it and writes
+     * the result to the second file.
+     * @param inputFilename path to an ASCII- / UTF-8-encoded file that should be compressed
+     * @param outputFilename the path the compressed file should be written to
+     * @throws java.io.IOException 
+     */
     public void compressFile(String inputFilename, String outputFilename) throws IOException {
         // read the file and compress it using the FGK algorithm
         Reader reader = new BufferedReader(new InputStreamReader(new FileInputStream(inputFilename), "UTF-8"));
